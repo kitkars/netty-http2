@@ -41,9 +41,9 @@ class ServerApplicationTests {
 		this.client
 				.post()
 				.uri("/products")
-				.bodyValue("some request")
+				.bodyValue(new Request("request"))
 				.retrieve()
-				.bodyToMono(String.class)
+				.bodyToMono(Response.class)
 				.doOnNext(System.out::println)
 				.as(StepVerifier::create)
 				.expectNextCount(1)

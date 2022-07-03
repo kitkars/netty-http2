@@ -9,9 +9,10 @@ import reactor.core.publisher.Mono;
 public class ProductController {
 
     @PostMapping("products")
-    public Mono<String> products(@RequestBody Mono<Object> mono){
+    public Mono<Response> products(@RequestBody Mono<Request> mono){
         return mono
-                .then(Mono.fromSupplier(() -> "Success"));
+                .doOnNext(System.out::println)
+                .then(Mono.fromSupplier(() -> new Response("success")));
     }
 
 }
